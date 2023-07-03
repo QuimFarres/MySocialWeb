@@ -1,0 +1,252 @@
+/* Global Styles */
+body {
+    background-color: #f5f8fa;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #1da1f2;
+    margin: 0;
+}
+
+header a {
+    text-decoration: none;
+    color: #1da1f2;
+}
+
+header input[type="text"] {
+    padding: 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+header button[type="submit"] {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+header ion-icon {
+    margin-right: 5px;
+}
+
+header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header ul li {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+header ul li a {
+    text-decoration: none;
+    color: #1da1f2;
+}
+
+/* Feed Styles */
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post {
+    margin-bottom: 20px;
+}
+
+.post .author {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.post .author a {
+    font-weight: bold;
+    color: #1da1f2;
+    text-decoration: none;
+}
+
+.post .actions {
+    display: flex;
+    align-items: center;
+}
+
+.post .actions a {
+    margin-right: 10px;
+    color: #1da1f2;
+    text-decoration: none;
+}
+
+.post img {
+    max-width: 100%;
+    margin-bottom: 10px;
+}
+
+.post .likes {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.post .likes svg {
+    margin-right: 5px;
+}
+
+.post .likes p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.post .caption {
+    margin-bottom: 10px;
+}
+
+.post .caption a {
+    font-weight: bold;
+    color: #1da1f2;
+    text-decoration: none;
+}
+
+.suggestions {
+    margin-top: 20px;
+}
+
+.suggestions h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.suggestions .user {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.suggestions .user img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.suggestions .user span {
+    font-size: 14px;
+}
+
+.suggestions .user .border {
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #ff69b4;
+    border: 1px solid #ff69b4;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    text-decoration: none;
+}
+
+.suggestions .user .border:hover {
+    background-color: #ff6db6;
+    border-color: #ff6db6;
+}
+
+/* CSS for Twitter-like create post form */
+.create-post-form {
+    margin-bottom: 20px;
+  }
+  
+  .create-post-form input[type="text"],
+  .create-post-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+    font-size: 16px;
+  }
+  
+  .create-post-form button[type="submit"] {
+    background-color: #1DA1F2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 9999px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .create-post-form button[type="submit"]:hover {
+    background-color: #0D8BF0;
+  }
+  
+  /* Optional: Adjust the overall form width if needed */
+  @media (min-width: 768px) {
+    .create-post-form {
+      width: 500px;
+      margin: 0 auto;
+    }
+  }
+  
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    flex: 1;
+}
+
+.logout-button {
+    margin-left: 20px;
+}
+
+.like-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    padding: 0;
+    text-decoration: underline;
+  }
+  
+  .like-button.liked {
+    color: blue;
+  }
+  
+  .pagination {
+    margin-top: 10px;
+}
+
+.pagination a {
+    padding: 5px 10px;
+    margin-right: 5px;
+    text-decoration: none;
+    background-color: #eee;
+    color: #333;
+}
+
+.pagination .current-page {
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+}

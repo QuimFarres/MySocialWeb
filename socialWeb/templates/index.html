@@ -1,0 +1,113 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- head content here -->
+<link rel="stylesheet" href="{% static 'css/style3.css' %}">
+<style>
+    .post-box {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+<head>
+    <!-- head content here -->
+</head>
+
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="{% url 'index' %}">
+                    <b><h1 style="text-transform: uppercase;">Social Book</h1></b>
+                </a>
+            </div>
+            <div class="logout-button">
+                <a href="../logout">Log Out</a>
+            </div>
+        </div>
+    </header>
+
+    <h1>Welcome, {{ request.user.username }}</h1>
+
+    <div>
+        <form action="{% url 'create_post' %}" method="POST">
+            {% csrf_token %}
+            <textarea name="text" placeholder="Your tweet..." required></textarea>
+            <button type="submit">Tweet</button>
+        </form>
+    </div>
+
+
+    <ul>
+        {% for post in posts %}
+        <li class="post-box">
+            <div class="post-content">
+                <strong>{{ post.user }}</strong><br>
+                {{ post.text }}<br>
+                <small>{{ post.created_at }}</small>
+                <form action="{% url 'like_post' post.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit">
+                        {% if request.user in post.liked_by.all %}Unlike{% else %}Like{% endif %}
+                    </button>
+                </form>
+                <small>{{ post.liked_by.all.count }} like(s)</small>
+            </div>
+            <div>
+                <div class="comment-box">
+                    {% for comment in post.comments.all %}
+                    <div class="comment-content">
+                        <strong>{{ comment.user }}</strong><br>
+                        {{ comment.text }}<br>
+                        <small>{{ comment.created_at }}</small>
+                        <form action="{% url 'like_comment' comment.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit">
+                                {% if request.user in comment.liked_by.all %}Unlike{% else %}Like{% endif %}
+                            </button>
+                        </form>
+                        <small>{{ comment.liked_by.all.count }} like(s)</small>
+                    </div>
+                    {% endfor %}       
+                </div>
+            </div>
+            <form action="{% url 'add_comment' post.id %}" method="POST">
+                {% csrf_token %}
+                <textarea name="text" placeholder="Your comment..." required></textarea>
+                <button type="submit">Comment</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+
+    <form action="{% url 'index' %}" method="GET">
+        {% csrf_token %}
+        <select name="tweet_count" onchange="this.form.submit()">
+            <option value="5" {% if tweet_count == 5 %}selected{% endif %}>5</option>
+            <option value="10" {% if tweet_count == 10 %}selected{% endif %}>10</option>
+            <option value="25" {% if tweet_count == 25 %}selected{% endif %}>25</option>
+            <option value="100" {% if tweet_count == 100 %}selected{% endif %}>100</option>
+        </select>
+        <input type="hidden" name="page" value="{{ posts.number }}">
+        <span>Showing {{ posts.start_index }} - {{ posts.end_index }} of {{ total_tweets }}</span>
+    </form>
+
+    <div class="pagination">
+        {% if posts.has_previous %}
+            <a href="?tweet_count={{ tweet_count }}&page=1">First</a>
+            <a href="?tweet_count={{ tweet_count }}&page={{ posts.previous_page_number }}">Previous</a>
+        {% endif %}
+        <span class="current-page">{{ posts.number }}</span>
+        {% if posts.has_next %}
+            <a href="?tweet_count={{ tweet_count }}&page={{ posts.next_page_number }}">Next</a>
+            <a href="?tweet_count={{ tweet_count }}&page={{ posts.paginator.num_pages }}">Last</a>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

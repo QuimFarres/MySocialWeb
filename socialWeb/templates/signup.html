@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Social Web (Register)</title>
+
+    <!-- Add Twitter Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+   
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- header -->
+        <div id="header">
+            <a href="/">
+                <h1>My Social Web</h1>
+            </a>
+        </div>
+
+        <!-- Content -->
+        <div>
+            <form action="{% url 'signup' %}" method="POST">
+                {% csrf_token %}
+                <h1>Register</h1>
+                <div>
+                    {% for message in messages %}
+                    <h5>{{ message }}</h5>
+                    {% endfor %}
+                </div>
+                <input type="text" name="username" placeholder="Username">
+                <input type="email" name="email" placeholder="Email">
+                <input type="password" name="password" placeholder="Password">
+                <input type="password" name="password2" placeholder="Confirm Password">
+                <button type="submit">Sign Up</button>
+                <div class="text-center mt-5">
+                    <p class="text-base">Do you have an account? <a href="/signin">Sign In</a></p>
+                </div>
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <div></div>
+    </div>
+
+    <!-- Add Twitter Bootstrap JS -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>
