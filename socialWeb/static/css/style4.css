@@ -1,0 +1,135 @@
+/* Reset default browser styles */
+body, h1, h2, p, ul, li, textarea, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Body styles */
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f6f8fa;
+    color: #14171a;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Header styles */
+  header {
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo a {
+    text-decoration: none;
+    color: #1da1f2;
+    font-weight: bold;
+  }
+  
+  .logout-button a {
+    text-decoration: none;
+    color: #1da1f2;
+    font-weight: bold;
+  }
+  
+  /* Main styles */
+  h1 {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  form {
+    margin-bottom: 20px;
+  }
+  
+  textarea {
+    width: 100%;
+    resize: vertical;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  button[type="submit"] {
+    background-color: #1da1f2;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Post box styles */
+  .post-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .post-content {
+    margin-bottom: 10px;
+  }
+  
+  .post-content strong {
+    font-weight: bold;
+  }
+  
+  .post-content small {
+    color: #054981;
+    font-size: 12px;
+  }
+  
+  .comment-box {
+    margin-top: 10px;
+    margin-left: 50px;
+     
+  }
+  
+  .comment-content {
+    margin-bottom: 10px;
+  }
+  
+  .pagination {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .pagination a {
+    margin: 0 5px;
+    text-decoration: none;
+    color: #1da1f2;
+  }
+  
+  .current-page {
+    font-weight: bold;
+  }
+  
+  /* Footer styles */
+  footer {
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #657786;
+  }
+  

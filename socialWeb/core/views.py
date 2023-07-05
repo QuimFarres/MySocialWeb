@@ -31,6 +31,7 @@ def index(request):
 
 
 
+
 @login_required(login_url='login')  # Redirects to the login page if the user is not logged in
 def create_post(request):
     if request.method == 'POST':
