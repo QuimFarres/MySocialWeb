@@ -41,7 +41,7 @@ platformdirs==2.5.2
 pluggy==1.0.0
 ply==3.11
 psutil==5.9.0
-pycosat==0.6.4
+pycosat
 pycparser==2.21
 PyJWT==2.4.0
 pyOpenSSL==23.0.0
