@@ -16,7 +16,7 @@ charset-normalizer
 click
 clyent
 colorama
-conda==23.5.0
+conda
 conda-build
 conda-content-trust
 conda-pack
