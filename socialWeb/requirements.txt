@@ -56,7 +56,6 @@ requests==2.29.0
 requests-toolbelt==0.9.1
 ruamel.yaml==0.17.21
 ruamel.yaml.clib==0.2.6
-ruamel-yaml-conda==0.17.21
 setuptools==65.6.3
 sip==6.6.2
 six==1.16.0
