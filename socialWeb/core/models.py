@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import User
 import uuid
 from datetime import datetime
 
@@ -16,7 +15,7 @@ class Comment(models.Model):
 
 class Post(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.CharField(max_length=100)
     text = models.CharField(max_length=500)
     created_at = models.DateTimeField(default=datetime.now)
     liked_by = models.ManyToManyField(User, related_name='liked_posts')
@@ -27,9 +26,6 @@ class Post(models.Model):
 
 
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    followers = models.ManyToManyField(User, related_name='following', blank=True)
 
 
 

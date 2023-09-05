@@ -44,27 +44,7 @@
         {% for post in posts %}
         <li class="post-box">
             <div class="post-content">
-                <strong>{{ post.user }}</strong>
-                {% if request.user != post.user %}
-                    <!-- Inside your for loop for posts -->
-                    {% with post_user_profile=post.user.userprofile %}
-                    {% if request.user != post.user %}
-                        {% if post.user in following %}
-                            <form action="{% url 'unfollow_user' post.user.id %}" method="POST">
-                                {% csrf_token %}
-                                <button type="submit">Unfollow</button>
-                            </form>
-                        {% else %}
-                            <form action="{% url 'follow_user' post.user.id %}" method="POST">
-                                {% csrf_token %}
-                                <button type="submit">Follow</button>
-                            </form>
-                        {% endif %}
-                    {% endif %}
-                    {% endwith %}
-
-                {% endif %}
-                <br>
+                <strong>{{ post.user }}</strong><br>
                 {{ post.text }}<br>
                 <small>{{ post.created_at }}</small>
                 <form action="{% url 'like_post' post.id %}" method="POST">
