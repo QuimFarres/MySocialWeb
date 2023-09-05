@@ -4,8 +4,9 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from .models import Post, Comment
+from .models import Post, Comment, UserProfile
 from django.core.paginator import Paginator
+
 
 @login_required(login_url='signin')
 def index(request):
@@ -22,10 +23,13 @@ def index(request):
     # Get the corresponding page of posts
     page_obj = paginator.get_page(page_number)
 
+    following = request.user.following.all()  # Get users the user is following
+
     context = {
         'posts': page_obj,
         'total_tweets': paginator.count,
         'tweet_count': int(tweet_count),
+        'following': following,
     }
     return render(request, 'index.html', context)
 
@@ -35,11 +39,13 @@ def index(request):
 @login_required(login_url='login')  # Redirects to the login page if the user is not logged in
 def create_post(request):
     if request.method == 'POST':
-        text = request.POST.get('text')
-        user = request.user
+        user = request.user  # Retrieve the authenticated user
+        text = request.POST['text']
         created_at = timezone.now()
-        post = Post.objects.create(user=user.username, text=text, created_at=created_at)
+
+        post = Post.objects.create(user=user, text=text, created_at=created_at)
         post.save()
+
         return redirect('index')
     else:
         return render(request, 'index.html')
@@ -75,9 +81,21 @@ def like_comment(request, comment_id):
     return redirect('index')
 
 
+@login_required
+def follow_user(request, user_id):
+    if request.method == 'POST':
+        user_to_follow = UserProfile.objects.get(user_id=user_id)
+        request.user.userprofile.following.add(user_to_follow.user)
+        return redirect('index')  # Redirect to the feed after following
+
+@login_required
+def unfollow_user(request, user_id):
+    if request.method == 'POST':
+        user_to_unfollow = UserProfile.objects.get(user_id=user_id)
+        request.user.userprofile.following.remove(user_to_unfollow.user)
+        return redirect('index')  # Redirect to the feed after unfollowing
 
 def signup(request):
-
     if request.method == 'POST':
         username = request.POST['username']
         email = request.POST['email']
@@ -94,6 +112,10 @@ def signup(request):
             else:
                 user = User.objects.create_user(username=username, email=email, password=password)
                 user.save()
+
+                # Create a UserProfile instance for the new user
+                user_profile = UserProfile.objects.create(user=user)
+
                 return redirect('signin')
         else:
             messages.info(request, 'Password Not Matching')
